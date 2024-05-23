@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Percent Marks Management System</title>
+    <link rel="apple-touch-icon" sizes="180x180" href="../images/favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="../images/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="../images/favicon/favicon-16x16.png">
+    <link rel="manifest" href="../images/favicon/site.webmanifest">
+    <link rel="stylesheet" href="./admin.css">
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <img src="../images/rectangle_logo_transparent.png" alt="">
+        </div>
+        <menu>
+            <a href="./index.html">Home</a>
+            <a href="./status.html">status</a>
+            <a href="./manage.html">manage</a>
+            <a href="./add.html">add</a>
+            <a href="">ADMIN</a>
+        </menu>
+    </header>
+
+    <main class="add">
+        <div class="addfac addsec">
+            <h2>Add A Faculty</h2>
+            <form action="#" method="post" id="addFacultyForm">
+                <label for="years">Years:</label>
+                <input type="number" id="years" name="years" required>
+        
+                <label for="modules">Modules:</label>
+                <select id="modules" name="modules" required>
+                    <!-- Populate options dynamically based on each year -->
+                    <option value="module1">Module 1</option>
+                    <option value="module2">Module 2</option>
+                    <!-- Add more options as needed -->
+                </select>
+        
+                <button type="submit">Add Faculty</button>
+            </form>
+        </div>
+        <br><br><br><br>
+        <div class="addfac addsec">
+            <h2>Add A Subject</h2>
+            <form action="#" method="post" id="addSubjectForm">
+                <label for="subjectName">Name:</label>
+                <input type="text" id="subjectName" name="subjectName" required>
+        
+                <label for="subjectCode">Code:</label>
+                <input type="text" id="subjectCode" name="subjectCode" required>
+        
+                <label for="subjectTeachers">Teachers:</label>
+                <input type="text" id="subjectTeachers" name="subjectTeachers" required>
+        
+                <label for="subjectLevels">Levels:</label>
+                <input type="text" id="subjectLevels" name="subjectLevels" required>
+        
+                <!-- Add more fields as needed -->
+        
+                <button type="submit">Add Subject</button>
+            </form>
+        </div>
+        <br><br><br><br>
+        <div class="addfac addsec">
+            <h2>Add A Lecturer</h2>
+            <form action="#" method="post" id="addLecturerForm">
+                <label for="lecturerSurname">Surname:</label>
+                <input type="text" id="lecturerSurname" name="lecturerSurname" required>
+        
+                <label for="lecturerOtherNames">Other Names:</label>
+                <input type="text" id="lecturerOtherNames" name="lecturerOtherNames" required>
+        
+                <label for="degree">Degree:</label>
+                <input type="text" id="degree" name="degree" required>
+        
+                <label for="lecturerGender">Gender:</label>
+                <select id="lecturerGender" name="lecturerGender" required>
+                    <option value="male">Male</option>
+                    <option value="female">Female</option>
+                </select>
+        
+                <label for="lecturerNationalID">National ID:</label>
+                <input type="text" id="lecturerNationalID" name="lecturerNationalID" required>
+        
+                <label for="lecturerEmail">Email:</label>
+                <input type="email" id="lecturerEmail" name="lecturerEmail" required>
+        
+                <label for="subjectTeaches">Subject Teaches:</label>
+                <input type="text" id="subjectTeaches" name="subjectTeaches" required>
+        
+                <button type="submit">Add Lecturer</button>
+            </form>
+        </div>
+        <br><br><br><br>
+        <div class="addfac addsec">
+            <h2>Add A Student</h2>
+            <form action="#" method="post" id="addStudentForm">
+                <label for="surname">Surname:</label>
+                <input type="text" id="surname" name="surname" required>
+        
+                <label for="otherNames">Other Names:</label>
+                <input type="text" id="otherNames" name="otherNames" required>
+        
+                <label for="dob">Date of Birth:</label>
+                <input type="date" id="dob" name="dob" required>
+        
+                <label for="gender">Gender:</label>
+                <select id="gender" name="gender" required>
+                    <option value="male">Male</option>
+                    <option value="female">Female</option>
+                </select>
+        
+                <label for="nationalID">National ID Number:</label>
+                <input type="text" id="nationalID" name="nationalID" required>
+        
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" required>
+        
+                <label for="faculty">Faculty:</label>
+                <select id="faculty" name="faculty" required>
+                    <!-- Populate options dynamically based on available faculties -->
+                    <option value="faculty1">Faculty 1</option>
+                    <option value="faculty2">Faculty 2</option>
+                    <!-- Add more options as needed -->
+                </select>
+        
+                <button type="submit">Add Student</button>
+            </form>
+        </div>
+    </main>
+
+    <footer>
+        <p>
+            <a href="./admindocs.html">Tutorial</a>
+        </p>
+        <p>
+            &copy; Percent Marks Management System 2024
+        </p>
+        <p>
+            <a href="../login.html">Logout</a>
+        </p>
+    </footer>
+</body>
+</html>

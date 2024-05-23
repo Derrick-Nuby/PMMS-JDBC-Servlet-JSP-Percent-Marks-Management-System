@@ -1,0 +1,121 @@
+package com.pmms.web;
+
+import java.io.IOException;
+import java.sql.SQLException;
+import java.util.List;
+
+import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import com.pmms.dao.StudentDAO;
+import com.pmms.model.Student;
+
+@WebServlet("/")
+public class StudentServlet extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+	private StudentDAO StudentDAO;
+	public StudentServlet() {
+		StudentDAO = new StudentDAO();
+    }
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		this.doGet(request, response);
+	}
+	/**
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		 String action = request.getServletPath();
+
+	        try {
+	            switch (action) {
+	                case "/new":
+	                    showNewForm(request, response);
+	                    break;
+	                case "/insert":
+	                    insertStudent(request, response);
+	                    break;
+	                case "/delete":
+	                    deleteStudent(request, response);
+	                    break;
+	                case "/edit":
+	                    showEditForm(request, response);
+	                    break;
+	                case "/update":
+	                    updateStudent(request, response);
+	                    break;
+	                default:
+	                    listStudent(request, response);
+	                    break;
+	            }
+	        } catch (SQLException ex) {
+	            throw new ServletException(ex);
+	        }
+	        
+	   
+	}
+
+	
+	
+	private void listStudent(HttpServletRequest request, HttpServletResponse response)
+		    throws SQLException, IOException, ServletException {
+		        List < Student > listStudent = StudentDAO.selectStudents();
+		        request.setAttribute("listStudent", listStudent);
+		        RequestDispatcher dispatcher = request.getRequestDispatcher("user-list.html");
+		        dispatcher.forward(request, response);
+		    }
+
+		    private void showNewForm(HttpServletRequest request, HttpServletResponse response)
+		    throws ServletException, IOException {
+		        RequestDispatcher dispatcher = request.getRequestDispatcher("user-form.html");
+		        dispatcher.forward(request, response);
+		    }
+
+		    private void showEditForm(HttpServletRequest request, HttpServletResponse response)
+		    throws SQLException, ServletException, IOException {
+		        int regno = Integer.parseInt(request.getParameter("regno"));
+		        Student existingStudent = StudentDAO.selectStudent(regno);
+		        RequestDispatcher dispatcher = request.getRequestDispatcher("user-form.html");
+		        request.setAttribute("student", existingStudent);
+		        dispatcher.forward(request, response);
+
+		    }
+
+		    private void insertStudent(HttpServletRequest request, HttpServletResponse response)
+		    throws SQLException, IOException {
+		    	String names = request.getParameter("names");
+		    	String email = request.getParameter("email");
+		    	String faculty = request.getParameter("faculty");
+		    	int level = Integer.parseInt(request.getParameter("level"));
+		    	int id = Integer.parseInt(request.getParameter("id"));
+		        Student newStudent = new Student(names, email, faculty, level, id);
+		        StudentDAO.insertStudent(newStudent);
+		        response.sendRedirect("list");
+		    }
+
+		    private void updateStudent(HttpServletRequest request, HttpServletResponse response)
+		    throws SQLException, IOException {
+		        int regno = Integer.parseInt(request.getParameter("regno"));
+		        String names = request.getParameter("names");
+		    	String email = request.getParameter("email");
+		    	String faculty = request.getParameter("faculty");
+		    	int level = Integer.parseInt(request.getParameter("level"));
+		    	int id = Integer.parseInt(request.getParameter("id"));
+
+		        Student book = new Student(regno, names, email, faculty, level, id);
+		        StudentDAO.updateStudent(book);
+		        response.sendRedirect("list");
+		    }
+
+		    private void deleteStudent(HttpServletRequest request, HttpServletResponse response)
+		    throws SQLException, IOException {
+		        int regno = Integer.parseInt(request.getParameter("regno"));
+		        StudentDAO.deleteStudent(regno);
+		        response.sendRedirect("list");
+
+		    }
+
+}

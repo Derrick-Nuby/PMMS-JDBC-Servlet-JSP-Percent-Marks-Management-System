@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lecturer Dr Muhirwa | Percent Marks Management System</title>
+    <link rel="stylesheet" href="../style.css">
+    <link rel="apple-touch-icon" sizes="180x180" href="../images/favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="../images/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="../images/favicon/favicon-16x16.png">
+    <link rel="manifest" href="../images/favicon/site.webmanifest">
+    <link rel="stylesheet" href="./lecturer.css">
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <img src="../images/rectangle_logo_transparent.png" alt="">
+        </div>
+        <menu>
+            <a href="./index.html">Home</a>
+            <a href="./marks.html">Marks</a>
+            <a href="./appeals.html">Appeals</a>
+            <a href="">Dr Muhirwa D.</a>
+        </menu>
+    </header>
+
+    <main class="marks">
+        <div class="uploadsection" onclick="triggerFileInput()">
+            <img src="../images/upload.png" alt="">
+            <p>Upload an excel file of student marks with xls and csv</p>
+            <form action="/upload" method="post" enctype="multipart/form-data">
+                <input type="file" name="file" accept=".xls, .csv" onchange="displayFileName(this)" required>
+                <button type="submit">Upload</button>
+            </form>
+        </div>
+
+        <div class="marksform">
+            <h2>Insert student Marks</h2>
+            <form>
+                <label for="regNo">Registration Number:</label>
+                <input type="text" id="regNo" name="regNo" required>
+            
+                <label for="module">Module:</label>
+                <select id="module" name="module" required>
+                    <option value="module1">Module 1</option>
+                    <option value="module2">Module 2</option>
+                    <option value="module3">Module 3</option>
+                    <!-- Add more modules as needed -->
+                </select>
+            
+                <label for="workNo">Work Number:</label>
+                <input type="text" id="workNo" name="workNo" required>
+            
+                <label for="examName">Exam Name:</label>
+                <input type="text" id="examName" name="examName" required>
+            
+                <label for="totmarks">Maximum Marks:</label>
+                <input type="number" id="totmarks" name="totmarks" required>
+                <label for="marks">Marks:</label>
+                <input type="number" id="marks" name="marks" required>
+            
+                <button type="submit">Submit</button>
+            </form>
+        </div>
+    </main>
+
+    <footer>
+        <p>
+            <a href="../guide.html">guide</a>
+        </p>
+        <p>
+            &copy; Percent Marks Management System 2024
+        </p>
+        <p>
+            <a href="../login.html">Logout</a>
+        </p>
+    </footer>
+</body>
+<script>
+    function triggerFileInput() {
+        document.querySelector('.uploadsection input[type="file"]').click();
+    }
+
+    function displayFileName(input) {
+        const fileNameDisplay = document.querySelector('.uploadsection p');
+        const fileName = input.files[0].name;
+        fileNameDisplay.textContent = `Selected file: ${fileName}`;
+    }
+</script>
+</html>
